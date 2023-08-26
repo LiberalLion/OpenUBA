@@ -62,7 +62,7 @@ class ProcessEngine():
     '''
     def process_data(self, data_folder: str, log_data_obj: dict):
 
-        logging.warning("Processing Data for : "+str(data_folder))
+        logging.warning(f"Processing Data for : {data_folder}")
 
         log_name = log_data_obj["log_name"]
         log_type = log_data_obj["type"]
@@ -79,9 +79,11 @@ class ProcessEngine():
         #read dataset, if any new
         if log_type == "csv":
             dataset_session.read_csv(data_folder, folder, location_type) # load
-            print( "isinstance(dataset_session.dataset, Dataset): "+str(isinstance(dataset_session.dataset, Dataset)) )
+            print(
+                f"isinstance(dataset_session.dataset, Dataset): {isinstance(dataset_session.dataset, Dataset)}"
+            )
             dataset_size: Tuple = dataset_session.get_size()
-            logging.warning( "Dataset Session size: "+str(dataset_size) )
+            logging.warning(f"Dataset Session size: {str(dataset_size)}")
 
         # after read the data, perform entity analysis using Entity class
 

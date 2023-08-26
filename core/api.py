@@ -18,5 +18,5 @@ import logging
 class API:
     @staticmethod
     def get_display(name):
-        logging.info("API get_display"+str(name))
-        return name+"test"
+        logging.info(f"API get_display{str(name)}")
+        return f"{name}test"

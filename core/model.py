@@ -92,14 +92,10 @@ class ModelLibrary():
             text = local_model.read()
             logging.warning(text)
 
-        f = open('model_library/model_test/model_test.py', 'w')
-        f.write("def func_try():\n\tprint(\"model_test testing...\")\n\treturn \"return from model_Test\"")
-        f.close()
-
-        f = open('model_library/model_test/__init__.py', 'w')
-        f.write("from .model_test import func_try")
-        f.close()
-
+        with open('model_library/model_test/model_test.py', 'w') as f:
+            f.write("def func_try():\n\tprint(\"model_test testing...\")\n\treturn \"return from model_Test\"")
+        with open('model_library/model_test/__init__.py', 'w') as f:
+            f.write("from .model_test import func_try")
         # insert at 1, 0 is the script path (or '' in REPL)
         sys.path.insert(1, 'model_library/model_test')
 
@@ -133,7 +129,7 @@ class Session():
     '''
     start a model session
     '''
-    def start_job(name):
+    def start_job(self):
         logging.info("Model Server %s: starting job")
         time.sleep(2)
         logging.info("Model Server %s: finishing job")

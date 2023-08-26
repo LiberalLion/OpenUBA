@@ -37,8 +37,8 @@ class PreSplitRecord:
 
     def __call__(self, *args) -> List:
         logging.warning("PreSplitRecord")
-        logging.error("PreSplitRecord args: "+str(args))
-        logging.warning("PreSplitRecord args len: "+str(len(args)))
+        logging.error(f"PreSplitRecord args: {args}")
+        logging.warning(f"PreSplitRecord args len: {len(args)}")
         record: str = args[0]
         sep: str = args[1]
         parser_result: list = self.function(args[0], record, sep)
@@ -53,7 +53,7 @@ class PreSplitRecord:
 '''
 class Parser():
     def __init__(self):
-        logging.info("Parser init: "+str(self))
+        logging.info(f"Parser init: {str(self)}")
 
     '''
     @name split_record
@@ -66,7 +66,7 @@ class Parser():
     def split_record(self, record: str, sep: str) -> List:
         logging.info("splitting record")
         split_result = record.split(sep)
-        logging.warning("split record: "+str(split_result))
+        logging.warning(f"split record: {split_result}")
         return split_result
 
 
@@ -90,7 +90,7 @@ class DatasetLogPrior:
     def __call__(self, *args) -> None:
         log_message = args[1] # last param
         logging.info("[DatasetLogPrior Log Message] "+log_message)
-        logging.warning("args[0]: "+str(args[0]))
+        logging.warning(f"args[0]: {str(args[0])}")
         self.function(args[0])
 
 
@@ -153,7 +153,7 @@ class CSV(Dataset):
     '''
     @DatasetLogPrior
     def read_from_disk(self) -> None:
-        logging.info("Trying: "+str(self.file_location))
+        logging.info(f"Trying: {str(self.file_location)}")
 
         ## TODO: get columns from config
         df = pd.read_csv(self.file_location+"/bluecoat.log",
@@ -164,14 +164,14 @@ class CSV(Dataset):
                          warn_bad_lines=False)
 
         # TODO: Parse class, will parse each row
-        logging.warning("columns: "+str(df.columns)+":"+str(df.shape))
+        logging.warning(f"columns: {str(df.columns)}:{str(df.shape)}")
 
         '''
         foo = lambda x: pd.Series([ i for i inself.split_record(x, ' ') ])
         # apply the parser to each record
         rev = df["date"].head(10).apply(foo)
         '''
-        logging.info( "Dataframe shape: ["+str(df.shape)+"]" )
+        logging.info(f"Dataframe shape: [{str(df.shape)}]")
         logging.error( df.describe() )
         self.dataframe = DataFrame( df )
 
