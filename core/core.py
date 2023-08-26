@@ -46,7 +46,7 @@ server = Flask(__name__)
 @description function to start process engine
 '''
 def scheduler_run(name):
-    logging.info("scheduler_run: "+str(name))
+    logging.info(f"scheduler_run: {str(name)}")
 
     process_engine_instance = ProcessEngine()
     process_engine_instance.execute()
@@ -57,7 +57,7 @@ def scheduler_run(name):
 '''
 @server.route("/display/<string:name>/")
 def display(name):
-    logging.info("Getting display info"+str(name))
+    logging.info(f"Getting display info{str(name)}")
     return API.get_display(name)
 
 '''

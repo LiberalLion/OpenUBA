@@ -23,7 +23,6 @@ from database import DB
 class Display():
     def __init__(self):
         logging.info("Display init")
-        pass
 
     def get_system_display(self):
 
